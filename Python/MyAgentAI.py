@@ -4,8 +4,8 @@ from crewai import Agent, Crew, Task, Process
 from crewai_tools import SerperDevTool
 from langchain_openai import ChatOpenAI
 
-load_dotenv()
 search_tool = SerperDevTool()
+load_dotenv()
 
 # Define agents with role and goals
 researcher = Agent(
@@ -29,7 +29,7 @@ writer = Agent(
     llm = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0.7)
 )
 
-# Define tasks for crew members
+# Define tasks for crew agents
 task1 = Task(
     description = """Conduct a comprehensive analysis of the latest advancements in AI Agent in March 2024.
     Indentify key trends, breakthrough, and potential industry impacts""",
@@ -44,6 +44,7 @@ task2 = Task(
     expected_output = "Full blog post of at least 3 paragrphs",
     agent = writer
 )
+
 # Instantiate your crew with a sequential process
 crew = Crew(
     agents = [researcher, writer],
